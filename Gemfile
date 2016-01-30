@@ -3,20 +3,46 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
 
+
+ruby "2.2.1"
+group :production do
+  gem "rails_12factor"
+  gem "pg"
+end
+
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :development, :test do
+  gem "sqlite3"
+
+  # Helpful gems
+  gem "better_errors" # improves error handling
+  gem "binding_of_caller" # used by better errors
+  # Testing frameworks
+  gem 'rspec-rails', '2.14.2' # testing framework
+  gem "factory_girl_rails" # use factories, not fixtures
+  gem "capybara" # simulate browser activity
+  gem "fakeweb"
+
+  # Automated testing
+  gem 'guard' # automated execution of test suite upon change
+  gem "guard-rspec" # guard integration with rspec
+  # Only install the rb-fsevent gem if on Max OSX
+  gem 'rb-fsevent' # used for Growl notifications
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
-gem "execjs"
-gem "twitter-bootstrap-rails"
-gem "bootstrap-sass"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+
+gem "execjs"
+gem "twitter-bootstrap-rails"
+gem "bootstrap-sass"
+gem 'shopify_api'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
